@@ -2,3 +2,7 @@ name: gEssentialsGUI
 version: 1.0.0-BETA
 author: goncalviz
 main: goncalviz.essentialsgui.Main
+commands:
+  essentials:
+    aliases: [utils, eg]
+    description: Comando para abrir o menu de utilidades
