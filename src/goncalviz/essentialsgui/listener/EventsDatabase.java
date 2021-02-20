@@ -20,16 +20,12 @@ public class EventsDatabase implements Listener {
         String nameInventory = utils.withColor("&8Essentials - Menu");
         if(e.getInventory().getTitle().equals(nameInventory)) {
             if(utilsSQL.containsPlayer(player)) {
-                utilsSQL.setClick(player, utilsSQL.getClicks(player) + 1);
+               utilsSQL.addClick(player, 1);
 
-            }else if(!utilsSQL.containsPlayer(player)){
+            }else if(!utilsSQL.containsPlayer(player)) {
 
                 Bukkit.broadcastMessage("O jogador " + player.getName() + " foi adicionado ao banco de dados.");
                 utilsSQL.setPlayer(player);
-
-            }else {
-
-                Bukkit.getConsoleSender().sendMessage("ERRO!");
 
             }
         }

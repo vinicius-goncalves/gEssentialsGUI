@@ -25,27 +25,29 @@ public class UtilsSQL extends ConnectionSQL {
     }
 
     public void setPlayer(Player player) {
-        PreparedStatement ps;
-        try {
-            ps = connection.prepareStatement("insert into `jogadores`(`jogador`, `vezesAberto`) values (?,?)");
-            ps.setString(1, player.getName());
-            ps.setInt(2, 0);
-        } catch(SQLException e) {
-            e.printStackTrace();
+        if (containsPlayer(player)) {
+            PreparedStatement ps;
+            try {
+                ps = connection.prepareStatement("insert into `jogadores`(`jogador`, `vezesAberto`) values (?,?)");
+                ps.setString(1, player.getName());
+                ps.setInt(2, 0);
+                ps.executeUpdate();
+            } catch(SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public void setClick(Player player, int howManyClicks) {
         if (containsPlayer(player)) {
-            PreparedStatement ps;
             try {
-                ps = connection.prepareStatement("update set `vezesAberto` = ? where `jogador` = ?");
+                PreparedStatement ps = connection.prepareStatement("update `jogadores` set `vezesAberto` = ? where `jogador` = ?");
                 ps.setInt(1, howManyClicks);
                 ps.setString(2, player.getName());
                 ps.executeUpdate();
             } catch(SQLException e) {
                 e.printStackTrace();
-                ;
+
             }
         }
     }
@@ -54,7 +56,7 @@ public class UtilsSQL extends ConnectionSQL {
         if (containsPlayer(player)) {
             PreparedStatement ps;
             try {
-                ps = connection.prepareStatement("select * from `jogadores` where = ?");
+                ps = connection.prepareStatement("select * from `jogadores` where `jogador` = ?");
                 ps.setString(1, player.getName());
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
@@ -69,5 +71,14 @@ public class UtilsSQL extends ConnectionSQL {
             setPlayer(player);
             return 0;
         }
+    }
+
+    public void addClick(Player player, int howManyClicks) {
+        if (containsPlayer(player)) {
+            setClick(player, getClicks(player) + howManyClicks);
+        }
+
+        setPlayer(player);
+
     }
 }
