@@ -15,8 +15,8 @@ public class EssentialsMenu {
         Inventory inv = Bukkit.createInventory(null, 3 * 9, utils.withColor("&8Essentials - Menu"));
         player.openInventory(inv);
 
-        inv.setItem(11, utils.setItem(Material.ENDER_CHEST, 1, 0, "&eEnderchest &7(Clique)", new String[] {"Seu baú virtual"}));
+        inv.setItem(10, utils.setItem(Material.ENDER_CHEST, 1, 0, "&eEnderchest &7(Clique)", new String[] {"§7Seu baú virtual"}));
+        inv.setItem(11, utils.setItem(Material.WORKBENCH, 1, 0, "&eCraft Table &7(Clique)", new String[] {"§7Mesa de trabalho virtual"}));
 
     }
-
 }

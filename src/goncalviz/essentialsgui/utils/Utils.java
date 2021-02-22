@@ -15,16 +15,6 @@ public class Utils {
 
     }
 
-    public String generateRandom(int size) {
-        StringBuilder sb = new StringBuilder();
-        String key = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-        for(int i = 0; i < size; i++) {
-            sb.append(key.charAt(new Random().nextInt(key.length())));
-        }
-
-        return sb.toString();
-    }
-
     public ItemStack setItem(Material material, int amount, int data, String displayName, String[] lore) {
         ItemStack itemStack = new ItemStack(material, amount, (short) data);
         ItemMeta itemMeta = itemStack.getItemMeta();
@@ -35,4 +25,12 @@ public class Utils {
 
     }
 
+    public String randomKey(int size) {
+        String key = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < size; i++) {
+            sb.append(key.charAt(new Random().nextInt(key.length())));
+        }
+        return sb.toString();
+    }
 }

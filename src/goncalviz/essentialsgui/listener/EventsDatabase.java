@@ -2,7 +2,6 @@ package goncalviz.essentialsgui.listener;
 
 import goncalviz.essentialsgui.database.UtilsSQL;
 import goncalviz.essentialsgui.utils.Utils;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -22,10 +21,7 @@ public class EventsDatabase implements Listener {
             if(utilsSQL.containsPlayer(player)) {
                utilsSQL.addClick(player, 1);
 
-            }else if(!utilsSQL.containsPlayer(player)) {
-
-                Bukkit.broadcastMessage("O jogador " + player.getName() + " foi adicionado ao banco de dados.");
-                utilsSQL.setPlayer(player);
+               player.sendMessage("Você abriu o inventário " + utilsSQL.getClicks(player) + " vezes.");
 
             }
         }

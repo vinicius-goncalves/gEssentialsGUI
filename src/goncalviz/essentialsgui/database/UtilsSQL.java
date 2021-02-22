@@ -25,18 +25,17 @@ public class UtilsSQL extends ConnectionSQL {
     }
 
     public void setPlayer(Player player) {
-        if (containsPlayer(player)) {
-            PreparedStatement ps;
-            try {
-                ps = connection.prepareStatement("insert into `jogadores`(`jogador`, `vezesAberto`) values (?,?)");
-                ps.setString(1, player.getName());
-                ps.setInt(2, 0);
-                ps.executeUpdate();
-            } catch(SQLException e) {
-                e.printStackTrace();
-            }
+        PreparedStatement ps;
+        try {
+            ps = connection.prepareStatement("insert into `jogadores`(`jogador`, `vezesAberto`) values (?,?)");
+            ps.setString(1, player.getName());
+            ps.setInt(2, 0);
+            ps.executeUpdate();
+        } catch(SQLException e) {
+            e.printStackTrace();
         }
     }
+
 
     public void setClick(Player player, int howManyClicks) {
         if (containsPlayer(player)) {
@@ -47,8 +46,9 @@ public class UtilsSQL extends ConnectionSQL {
                 ps.executeUpdate();
             } catch(SQLException e) {
                 e.printStackTrace();
-
             }
+        } else {
+            setPlayer(player);
         }
     }
 
@@ -78,7 +78,9 @@ public class UtilsSQL extends ConnectionSQL {
             setClick(player, getClicks(player) + howManyClicks);
         }
 
-        setPlayer(player);
+        if (!containsPlayer(player)) {
+            setPlayer(player);
 
+        }
     }
 }

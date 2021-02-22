@@ -1,5 +1,6 @@
 package goncalviz.essentialsgui.files;
 
+import goncalviz.essentialsgui.Main;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -7,23 +8,23 @@ import java.io.File;
 
 public class ConfigFile {
 
-    private File file;
-    private FileConfiguration fileConfiguration;
+    public static File file;
+    public static FileConfiguration fileConfiguration;
 
-    public void createNewFile() {
+    public void createNewFileConfiguration() {
         File newFile = new File("plugins/gEssentialsGUI/configuracao.yml");
         if (!newFile.exists()) {
             try {
-                newFile.createNewFile();
+                Main.getPlugin(Main.class).saveResource("configuracao.yml", false);
             }catch(Exception ignored) {
 
             }
         }
     }
 
-    public FileConfiguration getFileConfiguration() {
+    public static FileConfiguration getFileConfiguration() {
         if (fileConfiguration == null) {
-            file = new File("plugins/gEssentials/configuracao.yml");
+            file = new File("plugins/gEssentialsGUI/configuracao.yml");
             fileConfiguration = YamlConfiguration.loadConfiguration(file);
         }
 
@@ -33,7 +34,7 @@ public class ConfigFile {
     public void saveFileConfiguration() {
         try {
             getFileConfiguration().save(file);
-        }catch(Exception e) {
+        }catch(Exception ignored) {
 
         }
     }

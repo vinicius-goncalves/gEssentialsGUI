@@ -4,6 +4,7 @@ import goncalviz.essentialsgui.Main;
 import goncalviz.essentialsgui.commands.EssentialsMenuCommand;
 import goncalviz.essentialsgui.database.ConnectionSQL;
 import goncalviz.essentialsgui.files.ConfigFile;
+import goncalviz.essentialsgui.files.DatabaseFile;
 import goncalviz.essentialsgui.files.PrincipalFiles;
 import goncalviz.essentialsgui.listener.Events;
 import goncalviz.essentialsgui.listener.EventsDatabase;
@@ -16,6 +17,7 @@ public class Register {
     private ConfigFile configFile = new ConfigFile();
     private PrincipalFiles principalFiles = new PrincipalFiles();
     private ConnectionSQL connectionSQL = new ConnectionSQL();
+    private DatabaseFile databaseFile = new DatabaseFile();
 
     private void setCommand(String command, CommandExecutor commandExecutor) {
         Bukkit.getPluginCommand(command).setExecutor(commandExecutor);
@@ -45,7 +47,8 @@ public class Register {
         registerCommands();
         registerEvents();
         principalFiles.createNewFolder();
-        configFile.createNewFile();
+        configFile.createNewFileConfiguration();
+        databaseFile.createNewDatabaseFile();
 
         //Database
         connectionSQL.startConnectionWithDatabase();
