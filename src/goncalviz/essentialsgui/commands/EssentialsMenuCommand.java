@@ -11,8 +11,8 @@ import java.util.HashMap;
 public class EssentialsMenuCommand implements CommandExecutor {
 
     private final Utils utils = new Utils();
-    private final EssentialsMenu essentialsMenu = new EssentialsMenu();
     private static HashMap<Player, Long> delayHashMap = new HashMap<>();
+    private EssentialsMenu essentialsMenu = new EssentialsMenu();
     private boolean delayBoolean;
 
     @Override
@@ -32,7 +32,7 @@ public class EssentialsMenuCommand implements CommandExecutor {
             }else {
 
                 delayHashMap.put(player, System.currentTimeMillis() + 3 * 1000);
-                essentialsMenu.openInventory(player);
+                essentialsMenu.openEssentialsMenu(player);
 
             }
 
