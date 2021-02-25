@@ -1,6 +1,0 @@
-#Ativando a conexao com o banco de dados, cada vez que um jogador abrir o menu 'Essentials' ira contar as vezes que foi aberto.
-#Deseja ativar banco de dados? Em caso positivo, ative-o o mesmo e configure a conexao em: database.yml
-bancoDeDados: false
-
-#Deseja ativar delay ao digitar o comando /essentials?
-delay: false
