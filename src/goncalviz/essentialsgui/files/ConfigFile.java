@@ -22,7 +22,7 @@ public class ConfigFile {
         }
     }
 
-    public static FileConfiguration getFileConfiguration() {
+    public FileConfiguration getFileConfiguration() {
         if (fileConfiguration == null) {
             file = new File("plugins/gEssentialsGUI/configuracao.yml");
             fileConfiguration = YamlConfiguration.loadConfiguration(file);

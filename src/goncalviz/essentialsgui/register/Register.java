@@ -54,11 +54,11 @@ public class Register {
         messagesFiles.createNewMessagesFile();
 
         //Database
-        if (ConfigFile.getFileConfiguration().getBoolean("bancoDeDados")) {
+        if (configFile.getFileConfiguration().getBoolean("bancoDeDados")) {
             connectionSQL.startConnectionWithDatabase();
 
         }else {
-            if(!ConfigFile.getFileConfiguration().getBoolean("bancoDeDados")) {
+            if(!configFile.getFileConfiguration().getBoolean("bancoDeDados")) {
                 System.out.println("A conexao com o banco de dados foi desativada.");
 
             }
@@ -68,10 +68,10 @@ public class Register {
     public void forOnDisable() {
 
         //Database
-        if (ConfigFile.getFileConfiguration().getBoolean("bancoDeDados")) {
+        if (configFile.getFileConfiguration().getBoolean("bancoDeDados")) {
             connectionSQL.disableConnectionWithDatabase();
         }else {
-            if(!ConfigFile.getFileConfiguration().getBoolean("bancoDeDados")) {
+            if(!configFile.getFileConfiguration().getBoolean("bancoDeDados")) {
                 System.out.println("A conexao com o banco de dados nao esta ativada.");
 
             }

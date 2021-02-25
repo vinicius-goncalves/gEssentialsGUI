@@ -17,6 +17,13 @@ import java.util.Random;
 
 public class Utils {
 
+    public String getArgs(String[] args) {
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < args.length; i++) {
+            sb.append(" " + args[i]);
+        }
+        return sb.toString();
+    }
     public String withColor(String message) {
         return ChatColor.translateAlternateColorCodes('&', message);
 
@@ -37,6 +44,7 @@ public class Utils {
         SkullMeta skullMeta = (SkullMeta) itemStack.getItemMeta();
         skullMeta.setDisplayName(withColor(displayName));
         skullMeta.setOwner(ownerSkull);
+        itemStack.setItemMeta(skullMeta);
         return itemStack;
 
     }
