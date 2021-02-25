@@ -5,6 +5,7 @@ import goncalviz.essentialsgui.commands.EssentialsMenuCommand;
 import goncalviz.essentialsgui.database.ConnectionSQL;
 import goncalviz.essentialsgui.files.ConfigFile;
 import goncalviz.essentialsgui.files.DatabaseFile;
+import goncalviz.essentialsgui.files.MessagesFiles;
 import goncalviz.essentialsgui.files.PrincipalFiles;
 import goncalviz.essentialsgui.listener.Events;
 import goncalviz.essentialsgui.listener.EventsDatabase;
@@ -18,6 +19,7 @@ public class Register {
     private PrincipalFiles principalFiles = new PrincipalFiles();
     private ConnectionSQL connectionSQL = new ConnectionSQL();
     private DatabaseFile databaseFile = new DatabaseFile();
+    private MessagesFiles messagesFiles = new MessagesFiles();
 
     private void setCommand(String command, CommandExecutor commandExecutor) {
         Bukkit.getPluginCommand(command).setExecutor(commandExecutor);
@@ -49,16 +51,30 @@ public class Register {
         principalFiles.createNewFolder();
         configFile.createNewFileConfiguration();
         databaseFile.createNewDatabaseFile();
+        messagesFiles.createNewMessagesFile();
 
         //Database
-        connectionSQL.startConnectionWithDatabase();
+        if (ConfigFile.getFileConfiguration().getBoolean("bancoDeDados")) {
+            connectionSQL.startConnectionWithDatabase();
 
+        }else {
+            if(!ConfigFile.getFileConfiguration().getBoolean("bancoDeDados")) {
+                System.out.println("A conexao com o banco de dados foi desativada.");
+
+            }
+        }
     }
 
     public void forOnDisable() {
 
         //Database
-        connectionSQL.disableConnectionWithDatabase();
+        if (ConfigFile.getFileConfiguration().getBoolean("bancoDeDados")) {
+            connectionSQL.disableConnectionWithDatabase();
+        }else {
+            if(!ConfigFile.getFileConfiguration().getBoolean("bancoDeDados")) {
+                System.out.println("A conexao com o banco de dados nao esta ativada.");
 
+            }
+        }
     }
 }

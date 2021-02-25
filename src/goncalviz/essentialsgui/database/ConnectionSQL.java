@@ -49,8 +49,7 @@ public class ConnectionSQL {
 
     public void createTableInDatabase() {
         try {
-            PreparedStatement ps;
-            ps = connection.prepareStatement("create table if not exists `jogadores`(`id` int not null auto_increment, `jogador` varchar(30), `vezesAberto` int null, primary key (id))");
+            PreparedStatement ps = connection.prepareStatement("create table if not exists `jogadores`(`id` int not null auto_increment, `jogador` varchar(30), `vezesAberto` int null, primary key (id))");
             ps.executeUpdate();
             cs.sendMessage(utils.withColor("&aA tabela 'jogadores' foi criada (ou) carregada com sucesso no banco de dados."));
         }catch(SQLException e) {
