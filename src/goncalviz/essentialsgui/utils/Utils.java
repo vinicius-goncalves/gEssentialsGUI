@@ -13,7 +13,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.Arrays;
-import java.util.Random;
 
 public class Utils {
 
@@ -32,27 +31,19 @@ public class Utils {
 
     }
 
-    public ItemStack setSkull(String displayName, String ownerSkull) {
+    public ItemStack setSkull(String displayName, String ownerSkull, String[] lore) {
         ItemStack itemStack = new ItemStack(Material.SKULL_ITEM, 1, (short) SkullType.PLAYER.ordinal());
         SkullMeta skullMeta = (SkullMeta) itemStack.getItemMeta();
         skullMeta.setDisplayName(withColor(displayName));
         skullMeta.setOwner(ownerSkull);
+        skullMeta.setLore(Arrays.asList(lore));
         itemStack.setItemMeta(skullMeta);
         return itemStack;
 
     }
 
-    public String generateRandom(int sizeCode) {
-        String key = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < sizeCode; i++) {
-            sb.append(key.charAt(new Random().nextInt(key.length())));
-        }
-        return sb.toString();
-    }
-
     public void sendActionbarToTarget(Player player, String message) {
-        IChatBaseComponent chat = IChatBaseComponent.ChatSerializer.a("{\"text\":\"" + message + "\"}");
+        IChatBaseComponent chat = IChatBaseComponent.ChatSerializer.a(withColor("{\"text\":\"" + message + "\"}").replace('&', '§'));
         PacketPlayOutChat packetChat = new PacketPlayOutChat(chat, (byte) 2);
         ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packetChat);
 
@@ -63,4 +54,5 @@ public class Utils {
         -> playerAction.sendMessage(withColor(messageToOpPlayer)));
 
     }
+
 }

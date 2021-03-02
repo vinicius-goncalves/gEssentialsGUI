@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 
 public class UtilsSQL extends ConnectionSQL {
 
@@ -97,8 +98,8 @@ public class UtilsSQL extends ConnectionSQL {
             if (!containsPlayer(player)) {
                 setPlayer(player);
             }
-        }else {
-            if(!configFile.getFileConfiguration().getBoolean("bancoDeDados")) {
+        } else {
+            if (!configFile.getFileConfiguration().getBoolean("bancoDeDados")) {
                 utils.sendMessageToOpPlayer("&c[OP Message] O banco de dados não está ativado.");
             }
         }

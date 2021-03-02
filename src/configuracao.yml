@@ -3,7 +3,9 @@
 bancoDeDados: false
 
 #Deseja ativar delay ao digitar o comando /essentials?
-delay: false
+ativarDelay:
+  delay: true
+  duracao: 3
 
 #Mensagens de alerta;
 mensagensDeAlerta:
