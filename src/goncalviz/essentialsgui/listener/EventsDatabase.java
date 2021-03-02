@@ -25,8 +25,8 @@ public class EventsDatabase implements Listener {
                     utilsSQL.addClick(player, 1);
                     player.sendMessage("§aVocê abriu o inventário " + utilsSQL.getClicks(player) + " vezes.");
                 }
-            }else{
-                if(utils.checkBoolean(configFile.getFileConfiguration().getBoolean("mensagensDeAlerta.bancoDeDadosDesativado"))) {
+            } else {
+                if (configFile.getFileConfiguration().getBoolean("mensagensDeAlerta.bancoDeDadosDesativado")) {
                     utils.sendMessageToOpPlayer("&c[OP Message] Tenha em mente que o banco de dados não está ligado.");
                 }
             }
@@ -36,15 +36,7 @@ public class EventsDatabase implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
         Player player = e.getPlayer();
-        if (utils.checkBoolean(configFile.getFileConfiguration().getBoolean("bancoDeDados"))) {
-            if (!utilsSQL.containsPlayer(player)) {
-                utilsSQL.setPlayer(player);
-            }
-        }else{
-            if(!utils.checkBoolean(configFile.getFileConfiguration().getBoolean("bancoDeDados"))) {
-                player.sendMessage("desativado.");
+        utilsSQL.verifiyIfDatabaseIsOn(player);
 
-            }
-        }
     }
 }

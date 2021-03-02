@@ -1,6 +1,7 @@
 package goncalviz.essentialsgui.database;
 
 import goncalviz.essentialsgui.files.ConfigFile;
+import goncalviz.essentialsgui.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
@@ -13,6 +14,7 @@ public class UtilsSQL extends ConnectionSQL {
 
     private ConfigFile configFile = new ConfigFile();
     private ConsoleCommandSender consoleCommandSender = Bukkit.getConsoleSender();
+    private Utils utils = new Utils();
 
     public boolean containsPlayer(Player player) {
         try {
@@ -87,6 +89,18 @@ public class UtilsSQL extends ConnectionSQL {
         if (!containsPlayer(player)) {
             setPlayer(player);
 
+        }
+    }
+
+    public void verifiyIfDatabaseIsOn(Player player) {
+        if (configFile.getFileConfiguration().getBoolean("bancoDeDados")) {
+            if (!containsPlayer(player)) {
+                setPlayer(player);
+            }
+        }else {
+            if(!configFile.getFileConfiguration().getBoolean("bancoDeDados")) {
+                utils.sendMessageToOpPlayer("&c[OP Message] O banco de dados não está ativado.");
+            }
         }
     }
 }

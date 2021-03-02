@@ -17,8 +17,6 @@ import java.util.Random;
 
 public class Utils {
 
-    private boolean checkValueBoolean;
-
     public String withColor(String message) {
         return ChatColor.translateAlternateColorCodes('&', message);
 
@@ -57,11 +55,6 @@ public class Utils {
         IChatBaseComponent chat = IChatBaseComponent.ChatSerializer.a("{\"text\":\"" + message + "\"}");
         PacketPlayOutChat packetChat = new PacketPlayOutChat(chat, (byte) 2);
         ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packetChat);
-
-    }
-
-    public boolean checkBoolean(boolean getBoolean) {
-        return checkValueBoolean = false;
 
     }
 
