@@ -1,5 +1,8 @@
 package goncalviz.essentialsgui.database;
 
+import goncalviz.essentialsgui.files.ConfigFile;
+import org.bukkit.Bukkit;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
 import java.sql.PreparedStatement;
@@ -7,6 +10,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UtilsSQL extends ConnectionSQL {
+
+    private ConfigFile configFile = new ConfigFile();
+    private ConsoleCommandSender consoleCommandSender = Bukkit.getConsoleSender();
 
     public boolean containsPlayer(Player player) {
         try {

@@ -3,7 +3,6 @@ package goncalviz.essentialsgui.listener;
 import goncalviz.essentialsgui.database.UtilsSQL;
 import goncalviz.essentialsgui.files.ConfigFile;
 import goncalviz.essentialsgui.utils.Utils;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,16 +23,11 @@ public class EventsDatabase implements Listener {
             if (configFile.getFileConfiguration().getBoolean("bancoDeDados")) {
                 if (utilsSQL.containsPlayer(player)) {
                     utilsSQL.addClick(player, 1);
-
                     player.sendMessage("§aVocê abriu o inventário " + utilsSQL.getClicks(player) + " vezes.");
-
                 }
-            }else {
-
-                if(!configFile.getFileConfiguration().getBoolean("bancoDeDados")) {
-                    Bukkit.getOnlinePlayers().stream().filter(a -> a.isOnline() && a.isOp()).forEach(b ->
-                            b.sendMessage("[OP Message] A conexão com o banco de dados não está ativada."));
-
+            }else{
+                if(utils.checkBoolean(configFile.getFileConfiguration().getBoolean("mensagensDeAlerta.bancoDeDadosDesativado"))) {
+                    utils.sendMessageToOpPlayer("&c[OP Message] Tenha em mente que o banco de dados não está ligado.");
                 }
             }
         }
@@ -42,9 +36,15 @@ public class EventsDatabase implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
         Player player = e.getPlayer();
-        if (!utilsSQL.containsPlayer(player)) {
-            utilsSQL.setPlayer(player);
+        if (utils.checkBoolean(configFile.getFileConfiguration().getBoolean("bancoDeDados"))) {
+            if (!utilsSQL.containsPlayer(player)) {
+                utilsSQL.setPlayer(player);
+            }
+        }else{
+            if(!utils.checkBoolean(configFile.getFileConfiguration().getBoolean("bancoDeDados"))) {
+                player.sendMessage("desativado.");
 
+            }
         }
     }
 }

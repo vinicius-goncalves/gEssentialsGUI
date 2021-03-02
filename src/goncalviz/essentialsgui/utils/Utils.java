@@ -1,8 +1,8 @@
 package goncalviz.essentialsgui.utils;
 
 import net.minecraft.server.v1_8_R3.IChatBaseComponent;
-import net.minecraft.server.v1_8_R3.Packet;
 import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.SkullType;
@@ -17,13 +17,8 @@ import java.util.Random;
 
 public class Utils {
 
-    public String getArgs(String[] args) {
-        StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < args.length; i++) {
-            sb.append(" " + args[i]);
-        }
-        return sb.toString();
-    }
+    private boolean checkValueBoolean;
+
     public String withColor(String message) {
         return ChatColor.translateAlternateColorCodes('&', message);
 
@@ -40,7 +35,7 @@ public class Utils {
     }
 
     public ItemStack setSkull(String displayName, String ownerSkull) {
-        ItemStack itemStack = new ItemStack(Material.SKULL_ITEM,1,(short) SkullType.PLAYER.ordinal());
+        ItemStack itemStack = new ItemStack(Material.SKULL_ITEM, 1, (short) SkullType.PLAYER.ordinal());
         SkullMeta skullMeta = (SkullMeta) itemStack.getItemMeta();
         skullMeta.setDisplayName(withColor(displayName));
         skullMeta.setOwner(ownerSkull);
@@ -49,20 +44,30 @@ public class Utils {
 
     }
 
-    public void sendActionbar(Player player, String message) {
-        IChatBaseComponent chat = IChatBaseComponent.ChatSerializer.a("{\"text\":\""+withColor(message)+"\"}");
-        Packet<?> packetActionbar = new PacketPlayOutChat(chat, (byte) 2);
-        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packetActionbar);
-
-    }
-    
     public String generateRandom(int sizeCode) {
         String key = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < sizeCode; i++) {
+        for (int i = 0; i < sizeCode; i++) {
             sb.append(key.charAt(new Random().nextInt(key.length())));
         }
         return sb.toString();
     }
 
+    public void sendActionbarToTarget(Player player, String message) {
+        IChatBaseComponent chat = IChatBaseComponent.ChatSerializer.a("{\"text\":\"" + message + "\"}");
+        PacketPlayOutChat packetChat = new PacketPlayOutChat(chat, (byte) 2);
+        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packetChat);
+
+    }
+
+    public boolean checkBoolean(boolean getBoolean) {
+        return checkValueBoolean = false;
+
+    }
+
+    public void sendMessageToOpPlayer(String messageToOpPlayer) {
+        Bukkit.getOnlinePlayers().stream().filter(player -> player.isOnline() && player.isOp()).forEach(playerAction
+        -> playerAction.sendMessage(withColor(messageToOpPlayer)));
+
+    }
 }

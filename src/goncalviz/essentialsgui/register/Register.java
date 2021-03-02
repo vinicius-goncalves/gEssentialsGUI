@@ -57,24 +57,26 @@ public class Register {
         if (configFile.getFileConfiguration().getBoolean("bancoDeDados")) {
             connectionSQL.startConnectionWithDatabase();
 
-        }else {
-            if(!configFile.getFileConfiguration().getBoolean("bancoDeDados")) {
+        } else {
+            if (!configFile.getFileConfiguration().getBoolean("bancoDeDados")) {
                 System.out.println("A conexao com o banco de dados foi desativada.");
 
             }
         }
+
     }
 
     public void forOnDisable() {
 
         //Database
-        if (configFile.getFileConfiguration().getBoolean("bancoDeDados")) {
+        if (configFile.getFileConfiguration().getBoolean("bancoDeDados") == true) {
             connectionSQL.disableConnectionWithDatabase();
-        }else {
-            if(!configFile.getFileConfiguration().getBoolean("bancoDeDados")) {
+        } else {
+            if (configFile.getFileConfiguration().getBoolean("bancoDeDados") == false) {
                 System.out.println("A conexao com o banco de dados nao esta ativada.");
 
             }
         }
     }
+
 }

@@ -26,7 +26,7 @@ public class EssentialsMenuCommand implements CommandExecutor {
         Player player = (Player) sender;
         if (command.getName().equalsIgnoreCase("essentials")) {
             if(delayHashMap.containsKey(player) && delayHashMap.get(player) >= System.currentTimeMillis()) {
-                utils.sendActionbar(player, "&cVocê está em &ldelay&c. Aguarde para continuar.");
+                utils.sendActionbarToTarget(player, "Em delay.");
                 return true;
 
             }else {
@@ -39,4 +39,5 @@ public class EssentialsMenuCommand implements CommandExecutor {
         }
         return false;
     }
+
 }

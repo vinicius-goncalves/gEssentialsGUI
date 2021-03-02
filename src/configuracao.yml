@@ -4,3 +4,7 @@ bancoDeDados: false
 
 #Deseja ativar delay ao digitar o comando /essentials?
 delay: false
+
+#Mensagens de alerta;
+mensagensDeAlerta:
+  bancoDeDadosDesativado: true
