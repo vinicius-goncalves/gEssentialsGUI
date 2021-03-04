@@ -9,17 +9,21 @@ import goncalviz.essentialsgui.files.MessagesFiles;
 import goncalviz.essentialsgui.files.PrincipalFiles;
 import goncalviz.essentialsgui.listener.Events;
 import goncalviz.essentialsgui.listener.EventsDatabase;
+import goncalviz.essentialsgui.utils.Utils;
+import goncalviz.essentialsgui.versionmanager.actionbar.VersionManagerActionBar;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.Listener;
 
 public class Register {
 
+    private Utils utils = new Utils();
     private ConfigFile configFile = new ConfigFile();
     private PrincipalFiles principalFiles = new PrincipalFiles();
     private ConnectionSQL connectionSQL = new ConnectionSQL();
     private DatabaseFile databaseFile = new DatabaseFile();
     private MessagesFiles messagesFiles = new MessagesFiles();
+    private VersionManagerActionBar versionManagerActionBar = new VersionManagerActionBar();
 
     private void setCommand(String command, CommandExecutor commandExecutor) {
         Bukkit.getPluginCommand(command).setExecutor(commandExecutor);
@@ -52,6 +56,11 @@ public class Register {
         configFile.createNewFileConfiguration();
         databaseFile.createNewDatabaseFile();
         messagesFiles.createNewMessagesFile();
+        if(versionManagerActionBar.setupVersionManagerActionBar()) {
+            Bukkit.getConsoleSender().sendMessage("Sucesso");
+        }else{
+            Bukkit.getPluginManager().disablePlugin(Main.getPlugin(Main.class));
+        }
 
         //Database
         if (configFile.getFileConfiguration().getBoolean("bancoDeDados")) {
@@ -59,7 +68,7 @@ public class Register {
 
         } else {
             if (!configFile.getFileConfiguration().getBoolean("bancoDeDados")) {
-                System.out.println("A conexao com o banco de dados foi desativada.");
+                Bukkit.getConsoleSender().sendMessage(utils.getPrefix() + utils.withColor("&cA conexao com o banco de dados se encontra desativada."));
 
             }
         }
@@ -69,13 +78,8 @@ public class Register {
     public void forOnDisable() {
 
         //Database
-        if (configFile.getFileConfiguration().getBoolean("bancoDeDados") == true) {
+        if (configFile.getFileConfiguration().getBoolean("bancoDeDados")) {
             connectionSQL.disableConnectionWithDatabase();
-        } else {
-            if (configFile.getFileConfiguration().getBoolean("bancoDeDados") == false) {
-                System.out.println("A conexao com o banco de dados nao esta ativada.");
-
-            }
         }
     }
 

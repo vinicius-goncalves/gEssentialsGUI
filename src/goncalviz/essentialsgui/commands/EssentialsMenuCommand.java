@@ -2,6 +2,8 @@ package goncalviz.essentialsgui.commands;
 
 import goncalviz.essentialsgui.files.ConfigFile;
 import goncalviz.essentialsgui.utils.Utils;
+import goncalviz.essentialsgui.versionmanager.actionbar.VersionManagerActionBar;
+import goncalviz.essentialsgui.versionmanager.actionbar.VersionManagerActionBarInterface;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -17,6 +19,7 @@ public class EssentialsMenuCommand implements CommandExecutor {
     private static HashMap<Player, Long> delayHashMap = new HashMap<>();
     private EssentialsMenu essentialsMenu = new EssentialsMenu();
     private long getDuration = configFile.getFileConfiguration().getLong("ativarDelay.duracao");
+    private VersionManagerActionBar versionManagerActionBar = new VersionManagerActionBar();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String lb, String[] args) {
@@ -32,7 +35,7 @@ public class EssentialsMenuCommand implements CommandExecutor {
             if(configFile.getFileConfiguration().getBoolean("ativarDelay.delay")) {
                 if(delayHashMap.containsKey(player) && delayHashMap.get(player) >= now) {
                     long time = TimeUnit.MILLISECONDS.toSeconds(delayHashMap.get(player) - now);
-                    utils.sendActionbarToTarget(player, "&cAguarde " + time + "s para &cpara digitar o comando novamente.");
+                    versionManagerActionBar.getVersionManagerActionBarInterface().sendActionBarToTarget(player, "&cAguarde " + time + "s para &cpara digitar o comando novamente.");
                     return true;
 
                 }else {

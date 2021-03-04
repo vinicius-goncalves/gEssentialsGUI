@@ -1,13 +1,9 @@
 package goncalviz.essentialsgui.utils;
 
-import net.minecraft.server.v1_8_R3.IChatBaseComponent;
-import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.SkullType;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -42,17 +38,14 @@ public class Utils {
 
     }
 
-    public void sendActionbarToTarget(Player player, String message) {
-        IChatBaseComponent chat = IChatBaseComponent.ChatSerializer.a(withColor("{\"text\":\"" + message + "\"}").replace('&', '§'));
-        PacketPlayOutChat packetChat = new PacketPlayOutChat(chat, (byte) 2);
-        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packetChat);
+    public void sendMessageToOpPlayer(String messageToOpPlayer) {
+        Bukkit.getOnlinePlayers().stream().filter(player -> player.isOnline() && player.isOp()).forEach(playerAction
+                -> playerAction.sendMessage(withColor(messageToOpPlayer)));
 
     }
 
-    public void sendMessageToOpPlayer(String messageToOpPlayer) {
-        Bukkit.getOnlinePlayers().stream().filter(player -> player.isOnline() && player.isOp()).forEach(playerAction
-        -> playerAction.sendMessage(withColor(messageToOpPlayer)));
-
+    public String getPrefix() {
+        return this.withColor("&7[gEssentials] ");
     }
 
 }

@@ -1,6 +1,7 @@
 package goncalviz.essentialsgui.listener;
 
 import goncalviz.essentialsgui.utils.Utils;
+import goncalviz.essentialsgui.versionmanager.actionbar.VersionManagerActionBar;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,6 +14,7 @@ public class Events implements Listener {
 
     private Utils utils = new Utils();
     private ArrayList<String> playerList = new ArrayList<>();
+    private VersionManagerActionBar versionManagerActionBar = new VersionManagerActionBar();
 
     @EventHandler
     public void cancelEvent(InventoryClickEvent e) {
@@ -33,7 +35,7 @@ public class Events implements Listener {
                         playerList.add(player.getName());
                         player.closeInventory();
 
-                        utils.sendActionbarToTarget(player, "&eQuem voce deseja matar? Digite o nome.");
+                        versionManagerActionBar.getVersionManagerActionBarInterface().sendActionBarToTarget(player, "&eQuem voce deseja matar? Digite o nome.");
 
                     }
                 }
