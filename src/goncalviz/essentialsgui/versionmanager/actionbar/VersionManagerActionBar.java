@@ -1,10 +1,17 @@
 package goncalviz.essentialsgui.versionmanager.actionbar;
 
+import goncalviz.essentialsgui.utils.Utils;
 import org.bukkit.Bukkit;
+import org.bukkit.command.ConsoleCommandSender;
 
 public class VersionManagerActionBar {
 
+    /*
+    Em breve com Reflection;
+     */
     private static VersionManagerActionBarInterface versionManagerActionBarInterface;
+    private static ConsoleCommandSender consoleCommandSender = Bukkit.getConsoleSender();
+    private static Utils utils = new Utils();
 
     public static boolean setupVersionManagerActionBar() {
 
@@ -13,12 +20,9 @@ public class VersionManagerActionBar {
         try {
             versionNMS = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
         }catch(ArrayIndexOutOfBoundsException e) {
-            Bukkit.getConsoleSender().sendMessage("Erro ao carregar o versionamento de versoes.");
             e.printStackTrace();
             return false;
         }
-
-        Bukkit.getConsoleSender().sendMessage("Your version " + versionNMS);
 
         if(versionNMS.equals("v1_8_R3")) {
             versionManagerActionBarInterface = new VersionManagerActionBar_v1_8_R3();
@@ -28,7 +32,8 @@ public class VersionManagerActionBar {
 
         }else {
 
-            Bukkit.getConsoleSender().sendMessage("O plugin nao suporta essa versao.");
+            consoleCommandSender.sendMessage(utils.getPrefix() + utils.withColor("&cO plugin nao suporta essa versao."));
+
         }
 
         return true;

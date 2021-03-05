@@ -1,7 +1,7 @@
 package goncalviz.essentialsgui.register;
 
 import goncalviz.essentialsgui.Main;
-import goncalviz.essentialsgui.commands.EssentialsMenuCommand;
+import goncalviz.essentialsgui.commands.EssentialsInventoryCommand;
 import goncalviz.essentialsgui.database.ConnectionSQL;
 import goncalviz.essentialsgui.files.ConfigFile;
 import goncalviz.essentialsgui.files.DatabaseFile;
@@ -9,6 +9,7 @@ import goncalviz.essentialsgui.files.MessagesFiles;
 import goncalviz.essentialsgui.files.PrincipalFiles;
 import goncalviz.essentialsgui.listener.Events;
 import goncalviz.essentialsgui.listener.EventsDatabase;
+import goncalviz.essentialsgui.listener.EventsInventory;
 import goncalviz.essentialsgui.utils.Utils;
 import goncalviz.essentialsgui.versionmanager.actionbar.VersionManagerActionBar;
 import org.bukkit.Bukkit;
@@ -23,7 +24,6 @@ public class Register {
     private ConnectionSQL connectionSQL = new ConnectionSQL();
     private DatabaseFile databaseFile = new DatabaseFile();
     private MessagesFiles messagesFiles = new MessagesFiles();
-    private VersionManagerActionBar versionManagerActionBar = new VersionManagerActionBar();
 
     private void setCommand(String command, CommandExecutor commandExecutor) {
         Bukkit.getPluginCommand(command).setExecutor(commandExecutor);
@@ -31,7 +31,7 @@ public class Register {
     }
 
     private void registerCommands() {
-        setCommand("essentials", new EssentialsMenuCommand());
+        setCommand("essentials", new EssentialsInventoryCommand());
 
     }
 
@@ -43,6 +43,7 @@ public class Register {
     private void registerEvents() {
         setEvent(new Events());
         setEvent(new EventsDatabase());
+        setEvent(new EventsInventory());
 
     }
 
@@ -56,9 +57,10 @@ public class Register {
         configFile.createNewFileConfiguration();
         databaseFile.createNewDatabaseFile();
         messagesFiles.createNewMessagesFile();
-        if(versionManagerActionBar.setupVersionManagerActionBar()) {
-            Bukkit.getConsoleSender().sendMessage("Sucesso");
+        if(VersionManagerActionBar.setupVersionManagerActionBar()) {
+            Bukkit.getConsoleSender().sendMessage(utils.withColor("&aVersionManagerActionBar foi carregado com sucesso! Valido para: 1.8_R3 e 1.9_R1"));
         }else{
+            Bukkit.getConsoleSender().sendMessage(utils.withColor("&cErro ao carregar o VersionManagerActionBar. O plugin foi desligado."));
             Bukkit.getPluginManager().disablePlugin(Main.getPlugin(Main.class));
         }
 

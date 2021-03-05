@@ -4,11 +4,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.SkullType;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class Utils {
 
@@ -44,8 +46,14 @@ public class Utils {
 
     }
 
+    public Player getRandomPlayer() {
+        return (Player) Bukkit.getOnlinePlayers().toArray()[new Random().nextInt(Bukkit.getOnlinePlayers().size())];
+
+    }
+
     public String getPrefix() {
         return this.withColor("&7[gEssentials] ");
+
     }
 
 }

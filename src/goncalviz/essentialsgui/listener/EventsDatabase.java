@@ -15,7 +15,6 @@ public class EventsDatabase implements Listener {
     private Utils utils = new Utils();
     private UtilsSQL utilsSQL = new UtilsSQL();
     private ConfigFile configFile = new ConfigFile();
-    private VersionManagerActionBar versionManagerActionBar = new VersionManagerActionBar();
 
     @EventHandler
     public void openInventory(InventoryOpenEvent e) {
@@ -30,7 +29,7 @@ public class EventsDatabase implements Listener {
             } else {
                 if (configFile.getFileConfiguration().getBoolean("mensagensDeAlerta.bancoDeDadosDesativado")) {
                     utils.sendMessageToOpPlayer("&c[OP Message] Tenha em mente que o banco de dados não está ligado.");
-                    versionManagerActionBar.getVersionManagerActionBarInterface().sendActionBarToTarget(player, "Hey There!");
+
                 }
             }
         }
