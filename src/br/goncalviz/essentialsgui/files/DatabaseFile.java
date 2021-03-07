@@ -1,6 +1,6 @@
-package goncalviz.essentialsgui.files;
+package br.goncalviz.essentialsgui.files;
 
-import goncalviz.essentialsgui.Main;
+import br.goncalviz.essentialsgui.Main;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 

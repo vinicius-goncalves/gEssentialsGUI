@@ -1,4 +1,4 @@
-package goncalviz.essentialsgui.utils;
+package br.goncalviz.essentialsgui.utils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

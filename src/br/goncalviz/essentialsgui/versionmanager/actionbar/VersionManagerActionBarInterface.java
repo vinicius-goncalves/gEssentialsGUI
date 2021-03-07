@@ -1,4 +1,4 @@
-package goncalviz.essentialsgui.versionmanager.actionbar;
+package br.goncalviz.essentialsgui.versionmanager.actionbar;
 
 import org.bukkit.entity.Player;
 

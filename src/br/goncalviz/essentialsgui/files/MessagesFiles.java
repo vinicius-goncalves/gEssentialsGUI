@@ -1,34 +1,32 @@
-package goncalviz.essentialsgui.files;
+package br.goncalviz.essentialsgui.files;
 
-import goncalviz.essentialsgui.Main;
+import br.goncalviz.essentialsgui.Main;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 
-public class ConfigFile {
+public class MessagesFiles {
 
-    public static File file;
-    public static FileConfiguration fileConfiguration;
+    private File file;
+    private FileConfiguration fileConfiguration;
 
-    public void createNewFileConfiguration() {
-        File newFile = new File("plugins/gEssentialsGUI/configuracao.yml");
+    public void createNewMessagesFile() {
+        File newFile = new File("plugins/gEssentialsGUI/messages.yml");
         if (!newFile.exists()) {
-            try {
-                Main.getPlugin(Main.class).saveResource("configuracao.yml", false);
-            }catch(Exception ignored) {
+            Main.getPlugin(Main.class).saveResource("messages.yml", false);
 
-            }
         }
     }
 
     public FileConfiguration getFileConfiguration() {
         if (fileConfiguration == null) {
-            file = new File("plugins/gEssentialsGUI/configuracao.yml");
+            file = new File("plugins/gEssentialsGUI/messages.yml");
             fileConfiguration = YamlConfiguration.loadConfiguration(file);
         }
 
         return fileConfiguration;
+
     }
 
     public void saveFileConfiguration() {

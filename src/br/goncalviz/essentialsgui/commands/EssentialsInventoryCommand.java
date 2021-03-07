@@ -1,8 +1,8 @@
-package goncalviz.essentialsgui.commands;
+package br.goncalviz.essentialsgui.commands;
 
-import goncalviz.essentialsgui.files.ConfigFile;
-import goncalviz.essentialsgui.utils.Utils;
-import goncalviz.essentialsgui.versionmanager.actionbar.VersionManagerActionBar;
+import br.goncalviz.essentialsgui.files.ConfigFile;
+import br.goncalviz.essentialsgui.utils.Utils;
+import br.goncalviz.essentialsgui.versionmanager.actionbar.VersionManagerActionBar;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

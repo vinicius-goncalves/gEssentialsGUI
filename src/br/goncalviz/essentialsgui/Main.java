@@ -1,7 +1,7 @@
-package goncalviz.essentialsgui;
+package br.goncalviz.essentialsgui;
 
-import goncalviz.essentialsgui.register.Register;
-import goncalviz.essentialsgui.utils.Utils;
+import br.goncalviz.essentialsgui.register.Register;
+import br.goncalviz.essentialsgui.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;

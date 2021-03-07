@@ -1,6 +1,6 @@
-package goncalviz.essentialsgui.versionmanager.actionbar;
+package br.goncalviz.essentialsgui.versionmanager.actionbar;
 
-import goncalviz.essentialsgui.utils.Utils;
+import br.goncalviz.essentialsgui.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
 

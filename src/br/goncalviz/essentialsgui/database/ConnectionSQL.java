@@ -1,7 +1,7 @@
-package goncalviz.essentialsgui.database;
+package br.goncalviz.essentialsgui.database;
 
-import goncalviz.essentialsgui.files.DatabaseFile;
-import goncalviz.essentialsgui.utils.Utils;
+import br.goncalviz.essentialsgui.files.DatabaseFile;
+import br.goncalviz.essentialsgui.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;

@@ -1,7 +1,7 @@
-package goncalviz.essentialsgui.listener;
+package br.goncalviz.essentialsgui.listener;
 
-import goncalviz.essentialsgui.utils.Utils;
-import goncalviz.essentialsgui.versionmanager.actionbar.VersionManagerActionBar;
+import br.goncalviz.essentialsgui.utils.Utils;
+import br.goncalviz.essentialsgui.versionmanager.actionbar.VersionManagerActionBar;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -34,6 +34,5 @@ public class Events implements Listener {
                 }
             }
         }
-
     }
 }

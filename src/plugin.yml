@@ -1,7 +1,7 @@
 name: gEssentialsGUI
 version: 1.0.0-BETA
 author: goncalviz
-main: goncalviz.essentialsgui.Main
+main: br.goncalviz.essentialsgui.Main
 commands:
   essentials:
     aliases: [utils, eg]

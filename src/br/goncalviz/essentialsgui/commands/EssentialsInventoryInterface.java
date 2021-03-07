@@ -1,4 +1,4 @@
-package goncalviz.essentialsgui.commands;
+package br.goncalviz.essentialsgui.commands;
 
 import org.bukkit.entity.Player;
 

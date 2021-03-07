@@ -1,4 +1,4 @@
-package goncalviz.essentialsgui.files;
+package br.goncalviz.essentialsgui.files;
 
 import java.io.File;
 

@@ -1,9 +1,9 @@
-package goncalviz.essentialsgui.listener;
+package br.goncalviz.essentialsgui.listener;
 
-import goncalviz.essentialsgui.database.UtilsSQL;
-import goncalviz.essentialsgui.files.ConfigFile;
-import goncalviz.essentialsgui.utils.Utils;
-import goncalviz.essentialsgui.versionmanager.actionbar.VersionManagerActionBar;
+import br.goncalviz.essentialsgui.database.UtilsSQL;
+import br.goncalviz.essentialsgui.files.ConfigFile;
+import br.goncalviz.essentialsgui.reflection.TitlesAPI;
+import br.goncalviz.essentialsgui.utils.Utils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,9 +15,10 @@ public class EventsDatabase implements Listener {
     private Utils utils = new Utils();
     private UtilsSQL utilsSQL = new UtilsSQL();
     private ConfigFile configFile = new ConfigFile();
+    private TitlesAPI titlesAPI = new TitlesAPI();
 
     @EventHandler
-    public void openInventory(InventoryOpenEvent e) {
+    public void openInventory(InventoryOpenEvent e) throws Exception {
         Player player = (Player) e.getPlayer();
         String nameInventory = utils.withColor("&8Essentials - Menu");
         if (e.getInventory().getTitle().equals(nameInventory)) {
@@ -29,6 +30,7 @@ public class EventsDatabase implements Listener {
             } else {
                 if (configFile.getFileConfiguration().getBoolean("mensagensDeAlerta.bancoDeDadosDesativado")) {
                     utils.sendMessageToOpPlayer("&c[OP Message] Tenha em mente que o banco de dados não está ligado.");
+                    titlesAPI.sendTitleToPlayer(player, "A", "B", 30, 40, 30);
 
                 }
             }

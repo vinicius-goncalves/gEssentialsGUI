@@ -1,9 +1,9 @@
-package goncalviz.essentialsgui.commands;
+package br.goncalviz.essentialsgui.commands;
 
 
-import goncalviz.essentialsgui.database.UtilsSQL;
-import goncalviz.essentialsgui.files.ConfigFile;
-import goncalviz.essentialsgui.utils.Utils;
+import br.goncalviz.essentialsgui.database.UtilsSQL;
+import br.goncalviz.essentialsgui.files.ConfigFile;
+import br.goncalviz.essentialsgui.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
