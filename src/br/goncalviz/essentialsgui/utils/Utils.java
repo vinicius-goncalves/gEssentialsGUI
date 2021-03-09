@@ -1,5 +1,6 @@
 package br.goncalviz.essentialsgui.utils;
 
+import br.goncalviz.essentialsgui.reflection.TitlesAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -13,6 +14,8 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Utils {
+
+    private TitlesAPI titlesAPI = new TitlesAPI();
 
     public String withColor(String message) {
         return ChatColor.translateAlternateColorCodes('&', message);
@@ -53,6 +56,11 @@ public class Utils {
 
     public String getPrefix() {
         return this.withColor("&7[gEssentials] ");
+
+    }
+
+    public void sendTitlesToTarget(Player player, String title, String subtitle, int fadeIn, int stay, int fadeOut) throws Exception {
+        titlesAPI.sendTitleToPlayer(player, title, subtitle, fadeIn, stay, fadeOut);
 
     }
 

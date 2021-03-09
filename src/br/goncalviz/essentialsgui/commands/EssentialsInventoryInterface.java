@@ -4,6 +4,7 @@ import org.bukkit.entity.Player;
 
 public interface EssentialsInventoryInterface {
 
-    void openEssentialsMenu(Player player);
+    void openEssentialsMenuForPlayerNotOp(Player player);
+    void openEssentialsMenuForPlayerOp(Player player);
 
 }

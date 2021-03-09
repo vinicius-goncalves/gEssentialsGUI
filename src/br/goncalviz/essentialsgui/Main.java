@@ -19,6 +19,7 @@ public class Main extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage(utils.withColor("&aO plugin '" + pluginDescriptionFile.getName() + "' foi iniciado."));
         register.forOnEnable();
 
+
     }
 
     @Override

@@ -6,6 +6,7 @@ import br.goncalviz.essentialsgui.database.ConnectionSQL;
 import br.goncalviz.essentialsgui.files.ConfigFile;
 import br.goncalviz.essentialsgui.files.DatabaseFile;
 import br.goncalviz.essentialsgui.listener.EventsDatabase;
+import br.goncalviz.essentialsgui.listener.EventsInventoryOP;
 import br.goncalviz.essentialsgui.utils.Utils;
 import br.goncalviz.essentialsgui.files.MessagesFiles;
 import br.goncalviz.essentialsgui.files.PrincipalFiles;
@@ -44,6 +45,8 @@ public class Register {
         setEvent(new Events());
         setEvent(new EventsDatabase());
         setEvent(new EventsInventory());
+        setEvent(new EventsInventoryOP());
+
 
     }
 

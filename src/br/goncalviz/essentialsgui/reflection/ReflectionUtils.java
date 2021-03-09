@@ -3,8 +3,6 @@ package br.goncalviz.essentialsgui.reflection;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import java.lang.reflect.InvocationTargetException;
-
 public class ReflectionUtils {
 
     public Class<?> getNMSClass(String name) {
@@ -18,7 +16,7 @@ public class ReflectionUtils {
         return null;
     }
 
-    public void sendPacket(Player player, Object packet) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, NoSuchFieldException {
+    public void sendPacket(Player player, Object packet) throws Exception {
         Object getHandle = player.getClass().getMethod("getHandle").invoke(player);
         Object playerConnection = getHandle.getClass().getField("playerConnection").get(getHandle);
         playerConnection.getClass().getMethod("sendPacket", getNMSClass("Packet")).invoke(playerConnection, packet);

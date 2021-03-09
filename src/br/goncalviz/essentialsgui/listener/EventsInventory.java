@@ -12,7 +12,6 @@ import java.util.ArrayList;
 public class EventsInventory implements Listener {
 
     private Utils utils = new Utils();
-    private ArrayList<Player> playersListToKill = new ArrayList<>();
     private VersionManagerActionBar versionManagerActionBar = new VersionManagerActionBar();
 
     @EventHandler
@@ -33,9 +32,6 @@ public class EventsInventory implements Listener {
 
                 }
 
-                if (event.getCurrentItem().getItemMeta().getDisplayName().equals(utils.withColor("&eEliminar um jogador"))) {
-
-                }
             }
         }
     }
